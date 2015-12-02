@@ -1,0 +1,8 @@
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+class Config {
+    static $elastic_lr_hosts = ['localhost:9200'];
+    static $elastic_lr_index = 'cclr';
+    static $max_terms = 8;
+}

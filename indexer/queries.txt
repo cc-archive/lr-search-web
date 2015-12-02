@@ -1,0 +1,44 @@
+curl -XGET 'http://localhost:9200/cclr/_search' -d '{
+    "size" : 1000,
+    "query" : {
+      "bool": {
+        "must" : { "desc" : "metal" }
+      }
+    }
+}
+' | grep 'nc-'
+
+curl -XGET 'http://localhost:9200/cclr/_search' -d '{
+"query": {
+  "filtered": {
+    "query": {
+      "match": { "description": "metal" }
+    },
+    "filter": {
+      "term": { "license_tag": "bync"}
+    }
+  }
+}
+}
+'
+
+
+curl -XPOST 'localhost:9200/cclr/_search?pretty' -d '
+{
+  "query": { "match": { "license_version": "2.0" } }
+}'
+
+curl -XPOST 'localhost:9200/cclr/_search?pretty' -d '
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"term": {"license_tag": "bync"}},
+        {"match": {"description": {
+                    "query":"color",
+                    "operator": "and"}}}
+        ]
+      }
+    }
+  }
+'

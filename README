@@ -1,0 +1,11 @@
+lr-search-web
+=============
+
+Simple scraper and web interface for Learning Registry search with Creative
+Commons license information.
+
+
+Dependencies
+============
+
+php5 elasticsearch python-elasticsearch python-beautifulsoup
